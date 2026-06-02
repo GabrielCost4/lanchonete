@@ -1,0 +1,66 @@
+[
+  {
+  "id": 1,
+  "name": "X-Bacon",
+  "category": "burgers",
+  "price": 23.00,
+  "description": "Carne de hamburguer acompanhado de muçarela, presunto, bacon, maionese, ketchup, cebola, batata palha, alface e tomate.",
+  "ingredients": ["Carne de Hamburguer", "Muçarela","Presunto","Bacon", "Maionese", "Ketchup", "Cebola","Batata Palha", "Alface", "Tomate"],
+  "image": "x-bacon.jpg"
+},
+{
+  "id": 2,
+  "name": "X-Calabresa",
+  "category": "burgers",
+  "price": 22.00,
+  "description": " Carne de hamburguer acompanhado de calabresa acebolada em fatias, queijo muçarela, presunto, alface, tomate, maionese, ketchup e batata palha.",
+  "ingredients": ["Carne de Hamburguer", "Calabresa", "Muçarela", "Presunto", "Alface", "Tomate", "Maionese", "Ketchup", "Batata Palha"],
+  "image": "x-calabresa.jpg"
+},
+{
+  "id": 3,
+  "name": "X-Salada",
+  "category": "burgers",
+  "price": 20.00,
+  "description": "Carne de hamburguer acompanhado de com queijo muçarela, presunto, alface, tomate, cebola, maionese, ketchup e batata palha.",
+  "ingredients": ["Carne de Hamburguer", "Muçarela", "Presunto", "Alface", "Tomate", "Cebola", "Maionese","Ketchup", "Batata Palha"],
+  "image": "x-salada.jpg"
+},
+{
+  "id": 4,
+  "name": "X-Burguer",
+  "category": "burgers",
+  "price": 16.00,
+  "description": "Carne de hamburguer acompanhado de queijo muçarela derretido, maionese, alface, tomate, cebola, ketchup e batata palha.",
+  "ingredients": ["Carne de Hamburguer", "Muçarela", "Maionese", "Alface", "Tomate", "Cebola", "Ketchup", "Batata Palha"],
+  "image": "x-burguer.png"
+},
+{
+  "id": 5,
+  "name": "Conquista Guaraná 2L",
+  "category": "drinks",
+  "price": 8.00,
+  "description": "Refrigerante Conquista Guaraná 2L para acompanhar seu lanche.",
+  "ingredients": ["Conquista Guaraná 2L"],
+  "image": "conquista-guarana-2l.jpg"
+}, 
+{
+  "id": 6,
+  "name": "Coca-Cola 2L",
+  "category": "drinks",
+  "price": 10.00,
+  "description": "Refrigerante Coca-Cola 2L para acompanhar seu lanche.",
+  "ingredients": ["Coca-Cola 2L"],
+  "image": "coca-cola-2l.jpg"
+},
+{
+  "id": 7,
+  "name": "Fanta Laranja 2L",
+  "category": "drinks",
+  "price": 10.00,
+  "description": "Refrigerante Fanta Laranja 2L para acompanhar seu lanche.",
+  "ingredients": ["Fanta Laranja 2L"],
+  "image": "fanta-laranja-2l.jpg"
+}
+
+]

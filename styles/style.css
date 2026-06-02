@@ -1,0 +1,356 @@
+/* ============================================================
+   style.css — Reset, Variáveis CSS, Base Global
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+  /* Cores primárias */
+  --black:        #0a0a0a;
+  --black-soft:   #111111;
+  --black-card:   #161616;
+  --black-border: #1f1f1f;
+  --black-hover:  #1c1c1c;
+
+  /* Vermelhos */
+  --red:          #e8192c;
+  --red-light:    #ff2d42;
+  --red-dark:     #b5121f;
+  --red-glow:     rgba(232, 25, 44, 0.25);
+  --red-subtle:   rgba(232, 25, 44, 0.08);
+
+  /* Laranjas */
+  --orange:       #f56b00;
+  --orange-light: #ff7f1a;
+  --orange-glow:  rgba(245, 107, 0, 0.22);
+
+  /* Dourado */
+  --gold:         #c9a84c;
+  --gold-light:   #e2c068;
+  --gold-subtle:  rgba(201, 168, 76, 0.12);
+
+  /* Brancos */
+  --white:        #ffffff;
+  --white-ice:    #f8f7f4;
+  --white-soft:   #e8e6e1;
+  --white-muted:  #a8a49e;
+  --white-faint:  rgba(255,255,255,0.06);
+
+  /* Gradientes */
+  --grad-red:     linear-gradient(135deg, var(--red) 0%, var(--orange) 100%);
+  --grad-dark:    linear-gradient(180deg, #0a0a0a 0%, #111111 100%);
+  --grad-card:    linear-gradient(145deg, #181818 0%, #141414 100%);
+  --grad-glow:    radial-gradient(ellipse at center, var(--red-glow) 0%, transparent 70%);
+
+  /* Glassmorphism */
+  --glass-bg:     rgba(22, 22, 22, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-blur:   blur(20px);
+
+  /* Tipografia */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-title:   'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+
+  /* Espaçamento */
+  --section-pad:  clamp(60px, 8vw, 100px);
+  --container:    1280px;
+  --radius-sm:    8px;
+  --radius-md:    14px;
+  --radius-lg:    20px;
+  --radius-xl:    28px;
+
+  /* Sombras */
+  --shadow-sm:    0 2px 8px rgba(0,0,0,0.4);
+  --shadow-md:    0 8px 24px rgba(0,0,0,0.5);
+  --shadow-lg:    0 16px 48px rgba(0,0,0,0.6);
+  --shadow-glow:  0 0 32px var(--red-glow), 0 8px 32px rgba(0,0,0,0.5);
+
+  /* Transições */
+  --ease:         cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition:   0.3s var(--ease);
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--black);
+  color: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.cart-open,
+body.modal-open,
+body.checkout-open {
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+input, textarea, select {
+  font-family: var(--font-body);
+  outline: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol { list-style: none; }
+
+/* ── Container ── */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 48px);
+}
+
+/* ── Section base ── */
+section {
+  position: relative;
+}
+
+/* ── Store Status Banner ── */
+#store-status-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 70px;
+  padding: 12px 20px;
+  background: rgba(34, 197, 94, 0.12);
+  border-bottom: 1px solid rgba(34, 197, 94, 0.18);
+  font-size: 14px;
+  font-weight: 700;
+  color: #ecfdf5;
+  letter-spacing: 0.02em;
+  transition: background var(--transition), color var(--transition);
+}
+
+#store-status-banner.store-open {
+  background: rgba(34, 197, 94, 0.18);
+  border-color: rgba(34, 197, 94, 0.28);
+  color: #ecfdf5;
+}
+
+#store-status-banner.store-closed {
+  background: rgba(232, 25, 44, 0.18);
+  border-color: rgba(248, 113, 113, 0.28);
+  color: #fee2e2;
+}
+
+#store-status-banner .status-text {
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--white-muted);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.status-dot.open {
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+  70%  { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* ── Loading Screen ── */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--black);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  transition: opacity 0.7s var(--ease), visibility 0.7s var(--ease);
+}
+
+#loading-screen.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-logo {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 56px);
+  letter-spacing: 0.08em;
+  color: var(--white);
+}
+
+.loading-logo span { color: var(--red); }
+
+.loading-bar-track {
+  width: 200px;
+  height: 2px;
+  background: var(--black-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  background: var(--grad-red);
+  border-radius: 2px;
+  animation: loading-fill 2.5s var(--ease) forwards;
+}
+
+@keyframes loading-fill {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+/* ── Toast ── */
+#toast-container {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 8000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+  align-items: center;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  color: var(--white);
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: all 0.35s var(--ease-spring);
+  white-space: nowrap;
+}
+
+.toast svg { color: #22c55e; flex-shrink: 0; }
+
+.toast.toast-show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.toast.toast-hide {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.95);
+}
+
+/* ── Custom Alert ── */
+.custom-alert {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  background: var(--black-card);
+  border: 1px solid var(--black-border);
+  color: var(--white);
+  padding: 14px 24px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--shadow-lg);
+  z-index: 8500;
+  opacity: 0;
+  transition: all 0.35s var(--ease-spring);
+  white-space: nowrap;
+}
+
+.custom-alert.alert-show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.custom-alert.alert-closed { border-color: var(--red-dark); color: var(--red-light); }
+.custom-alert.alert-warning { border-color: var(--orange); }
+.custom-alert svg { flex-shrink: 0; }
+
+/* ── Scroll Reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Disabled state ── */
+.disabled-btn {
+  opacity: 0.4 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--black-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #333; }
+
+/* ── Focus visible ── */
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* ── Selection ── */
+::selection { background: var(--red); color: var(--white); }
