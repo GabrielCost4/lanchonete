@@ -7,7 +7,7 @@
 // CONFIGURE SEU NÚMERO AQUI (com DDI e DDD, sem espaços ou símbolos)
 // Exemplo: "5514999999999" → Brasil, DDD 14
 // =============================================
-const WHATSAPP_NUMBER = "5514991190771";
+const WHATSAPP_NUMBER = "5514991968862";
 
 /**
  * Formata e envia o pedido para o WhatsApp.

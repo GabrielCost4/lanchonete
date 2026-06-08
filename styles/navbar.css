@@ -29,14 +29,6 @@
   box-shadow: 0 4px 24px rgba(0,0,0,0.4);
 }
 
-#navbar.nav-hidden {
-  transform: translateY(-100%);
-}
-
-#navbar.nav-visible {
-  transform: translateY(0);
-}
-
 /* ── Nav inner layout ── */
 .nav-inner {
   display: flex;

@@ -19,15 +19,15 @@ function initNavbarScroll() {
   const navbar = document.getElementById("navbar");
   if (!navbar) return;
 
-  let lastY = 0;
-
-  window.addEventListener("scroll", () => {
+  const updateNavbar = () => {
     const y = window.scrollY;
-    navbar.classList.toggle("scrolled", y > 50);
-    navbar.classList.toggle("nav-hidden", y > lastY + 10 && y > 200);
-    navbar.classList.toggle("nav-visible", y < lastY - 10);
-    lastY = y;
-  }, { passive: true });
+    const isDesktop = window.innerWidth > 768;
+    navbar.classList.toggle("scrolled", isDesktop && y > 50);
+  };
+
+  window.addEventListener("scroll", updateNavbar, { passive: true });
+  window.addEventListener("resize", updateNavbar, { passive: true });
+  updateNavbar();
 }
 
 /* ──────────────────────────────────────────

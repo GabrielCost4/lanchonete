@@ -69,6 +69,11 @@
 
   .nav-logo .logo-text { font-size: 19px; }
 
+  /* Hide hero on responsive mobile/tablet portrait */
+  #hero {
+    display: none;
+  }
+
   /* Hero */
   .hero-inner {
     padding-top: 100px;
