@@ -4,8 +4,8 @@
   "name": "X-Bacon",
   "category": "burgers",
   "price": 24.00,
-  "description": "Carne de hamburguer acompanhado de muçarela, presunto, bacon, maionese, ketchup, cebola, batata palha, alface e tomate.",
-  "ingredients": ["Carne de Hamburguer", "Muçarela","Presunto","Bacon", "Maionese", "Ketchup", "Cebola","Batata Palha", "Alface", "Tomate"],
+  "description": "Pão, carne de hamburguer acompanhado de muçarela, presunto, bacon, maionese, ketchup, cebola, batata palha, alface e tomate.",
+  "ingredients": ["Pão","Carne de Hamburguer", "Muçarela","Presunto","Bacon", "Maionese", "Ketchup", "Cebola","Batata Palha", "Alface", "Tomate"],
   "image": "x-bacon.jpg"
 },
 {
@@ -13,8 +13,8 @@
   "name": "X-Calabresa",
   "category": "burgers",
   "price": 22.00,
-  "description": " Carne de hamburguer acompanhado de calabresa acebolada em fatias, queijo muçarela, presunto, alface, tomate, maionese, ketchup e batata palha.",
-  "ingredients": ["Carne de Hamburguer", "Calabresa", "Muçarela", "Presunto", "Alface", "Tomate", "Maionese", "Ketchup", "Batata Palha"],
+  "description": "Pão, carne de hamburguer acompanhado de calabresa, cebola, queijo muçarela, presunto, alface, tomate, maionese, ketchup e batata palha.",
+  "ingredients": ["Pão","Carne de Hamburguer", "Calabresa", "Cebola", "Muçarela", "Presunto", "Alface", "Tomate", "Maionese", "Ketchup", "Batata Palha"],
   "image": "x-calabresa.jpg"
 },
 {
@@ -22,8 +22,8 @@
   "name": "X-Salada",
   "category": "burgers",
   "price": 20.00,
-  "description": "Carne de hamburguer acompanhado de com queijo muçarela, presunto, alface, tomate, cebola, maionese, ketchup e batata palha.",
-  "ingredients": ["Carne de Hamburguer", "Muçarela", "Presunto", "Alface", "Tomate", "Cebola", "Maionese","Ketchup", "Batata Palha"],
+  "description": "Pão, carne de hamburguer acompanhado de 2 fatias de muçarela, 2 duas fatias de presunto, alface, tomate.",
+  "ingredients": ["Pão","Carne de Hamburguer", "2 fatias de muçarela", "2 fatias de presunto", "Alface", "Tomate"],
   "image": "x-salada.jpg"
 },
 {
@@ -31,30 +31,75 @@
   "name": "Hambúrguer",
   "category": "burgers",
   "price": 14.00,
-  "description": "Carne de hambúrguer acompanhada de alface, tomate, maionese e ketchup.",
-  "ingredients": ["Carne de Hambúrguer", "Alface", "Tomate", "Maionese", "Ketchup"],
+  "description": "Pão, carne de hambúrguer acompanhada de alface, tomate, maionese e ketchup.",
+  "ingredients": ["Pão","Carne de Hambúrguer", "Alface", "Tomate", "Maionese", "Ketchup"],
   "image": "hamburguer.png"
 },
 {
   "id": 5,
-  "name": "X-Burguer",
+  "name": "Hambúrguer duplo",
   "category": "burgers",
   "price": 17.00,
-  "description": "Carne de hamburguer acompanhado de queijo muçarela derretido, tomate,  maionese, ketchup.",
-  "ingredients": ["Carne de Hamburguer", "Muçarela", "Tomate", "Maionese","Ketchup"],
-  "image": "x-burguer.png"
+  "description": "Pão, 2 carne de hambúrguer acompanhada de alface, tomate, maionese e ketchup.",
+  "ingredients": ["Pão","Carne de Hambúrguer", "Alface", "Tomate", "Maionese", "Ketchup"],
+  "image": "hamburguer.png"
 },
 {
   "id": 6,
+  "name": "X-Burguer",
+  "category": "burgers",
+  "price": 17.00,
+  "description":"Pão, carne de hamburguer acompanhado de 2 fatias de muçarela, 2 fatias de presunto,  maionese, ketchup.",
+  "ingredients": ["Pão","Carne de Hamburguer", "2 fatias de muçarela", "2 fatias de presunto", "Maionese","Ketchup"],
+  "image": "x-burguer.png"
+},
+{
+  "id": 7,
+  "name": "X-Egg",
+  "category": "burgers",
+  "price": 19.00,
+  "description":"Pão, carne de hamburguer acompanhado de ovo, tomate, cebola, alface, batata palha, maionese e ketchup.",
+  "ingredients": ["Pão","Carne de Hamburguer", "Ovo", "Tomate", "Cebola","Alface", "Batata Palha", "Maionese", "Ketchup"],
+  "image": "x-egg.png"
+},
+{
+  "id": 8,
+  "name": "Misto quente",
+  "category": "burgers",
+  "price": 15.00,
+  "description":"Pão, 2 fatias de muçarela, 2 fatias de presunto.",
+  "ingredients": ["Pão","2 fatias de muçarela", "2 fatias de presunto"],
+  "image": "misto-quente.png"
+},
+{
+  "id": 9,
+  "name": "Cachorro quente simples",
+  "category": "burgers",
+  "price": 12.00,
+  "description": "Pão com salsicha na chapa, maionese, ketchup, mostarda e batata palha.",
+  "ingredients": ["Pão", "Maionese", "Ketchup", "Mostarda", "Salsicha na chapa", "Batata Palha"],
+  "image": "cachorro-quente-simples.jpg"
+},
+{
+  "id": 10,
+  "name": "Cachorro quente especial",
+  "category": "burgers",
+  "price": 14.00,
+  "description": "Pão com 2 salsichas ao molho, catupiry, maionese, ketchup, mostarda, purê de batata e batata palha.",
+  "ingredients": ["Pão", "Maionese", "Ketchup", "Mostarda","Purê de batata", "Catupiry", "2 salsichas ao molho", "Batata Palha"],
+  "image": "cachorro-quente-especial.jpg"
+},
+{
+  "id": 11,
   "name": "Conquista Guaraná 2L",
   "category": "drinks",
   "price": 8.50,
   "description": "Refrigerante Conquista Guaraná 2L para acompanhar seu lanche.",
   "ingredients": ["Conquista Guaraná 2L"],
   "image": "conquista-guarana-2l.jpg"
-}, 
+},
 {
-  "id": 7,
+  "id": 12,
   "name": "Coca-Cola 2L",
   "category": "drinks",
   "price": 15.00,
@@ -63,7 +108,7 @@
   "image": "coca-cola-2l.jpg"
 },
 {
-  "id": 8,
+  "id": 13,
   "name": "Fanta Laranja 2L",
   "category": "drinks",
   "price": 15.00,

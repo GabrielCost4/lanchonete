@@ -308,13 +308,20 @@ if (total) total.textContent = totalFormatted;
 function getProductImageUrl(id) {
   const images = {
     1: "assets/x-bacon.png",
-    2: "https://media-cdn.tripadvisor.com/media/photo-s/06/c2/f9/ff/alex-silva-lanches.jpg",
+    2: "assets/x-calabresa.png",
     3: "https://static.wixstatic.com/media/426382_b4e2e7aa9a284d3ebb7489df5fee4d55~mv2.jpg/v1/fill/w_2500,h_2500,al_c/426382_b4e2e7aa9a284d3ebb7489df5fee4d55~mv2.jpg",
     4: "assets/hamburguer.png",
-    5: "assets/x-burguer.png",
-    6: "https://tauste.com.br/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/8/4/84351777340059.jpg",
-    7: "https://andinacocacola.vtexassets.com/arquivos/ids/158758/Coca-Cola-Original-_110440.jpg?v=639156020671730000",
-    8: "https://carrefourbrfood.vtexassets.com/arquivos/ids/18900713/fanta-laranja-2-litros-1.jpg?v=637590176098330000"
+    5: "assets/hamburguer-duplo.jpeg",
+    6: "assets/x-burguer.png",
+    7: "assets/x-egg.png",
+    8: "assets/misto-quente.png",
+    // Cachorros-quentes
+    9: "assets/cachorro-quente-simples.png",
+    10: "assets/cachorro-quente-especial.png",
+    // Bebidas renumeradas
+    11: "https://tauste.com.br/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/8/4/84351777340059.jpg",
+    12: "https://andinacocacola.vtexassets.com/arquivos/ids/158758/Coca-Cola-Original-_110440.jpg?v=639156020671730000",
+    13: "https://carrefourbrfood.vtexassets.com/arquivos/ids/18900713/fanta-laranja-2-litros-1.jpg?v=637590176098330000"
   };
   return images[id] || "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=100&q=60";
 }

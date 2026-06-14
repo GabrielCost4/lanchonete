@@ -15,7 +15,7 @@ const storeSettings = {
   // Dias da semana que o estabelecimento funciona
   // 0 = Domingo, 1 = Segunda, 2 = Terça, 3 = Quarta,
   // 4 = Quinta, 5 = Sexta, 6 = Sábado
-  workingDays: [0, 1, 2, 3, 4, 5, 6],
+  workingDays: [0],
 
   // Mensagem de fechamento exibida ao usuário
   closedMessage: "Estamos fechados no momento. Volte em breve!",
