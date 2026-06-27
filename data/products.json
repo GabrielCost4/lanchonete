@@ -58,8 +58,8 @@
   "name": "X-Egg",
   "category": "burgers",
   "price": 19.00,
-  "description":"Pão, carne de hamburguer acompanhado de ovo, tomate, cebola, alface, batata palha, maionese e ketchup.",
-  "ingredients": ["Pão","Carne de Hamburguer", "Ovo", "Tomate", "Cebola","Alface", "Batata Palha", "Maionese", "Ketchup"],
+  "description":"Pão, carne de hamburguer acompanhado de ovo, muçarela, tomate, cebola, alface, batata palha, maionese e ketchup.",
+  "ingredients": ["Pão","Carne de Hamburguer", "Ovo", "Muçarela","Tomate", "Cebola","Alface", "Batata Palha", "Maionese", "Ketchup"],
   "image": "x-egg.png"
 },
 {
@@ -70,24 +70,6 @@
   "description":"Pão, 2 fatias de muçarela, 2 fatias de presunto.",
   "ingredients": ["Pão","2 fatias de muçarela", "2 fatias de presunto"],
   "image": "misto-quente.png"
-},
-{
-  "id": 9,
-  "name": "Cachorro quente simples",
-  "category": "burgers",
-  "price": 12.00,
-  "description": "Pão com salsicha na chapa, maionese, ketchup, mostarda e batata palha.",
-  "ingredients": ["Pão", "Maionese", "Ketchup", "Mostarda", "Salsicha na chapa", "Batata Palha"],
-  "image": "cachorro-quente-simples.jpg"
-},
-{
-  "id": 10,
-  "name": "Cachorro quente especial",
-  "category": "burgers",
-  "price": 14.00,
-  "description": "Pão com 2 salsichas ao molho, catupiry, maionese, ketchup, mostarda, purê de batata e batata palha.",
-  "ingredients": ["Pão", "Maionese", "Ketchup", "Mostarda","Purê de batata", "Catupiry", "2 salsichas ao molho", "Batata Palha"],
-  "image": "cachorro-quente-especial.jpg"
 },
 {
   "id": 11,

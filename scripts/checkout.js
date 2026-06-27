@@ -63,7 +63,7 @@ function renderCheckoutOrder() {
     )
     .join("");
 
-  const DELIVERY_FEE = 3;
+  const DELIVERY_FEE = 5;
 
 const subtotal = Cart.getTotal();
 const finalTotal = subtotal + DELIVERY_FEE;
@@ -325,7 +325,7 @@ if (needChange.value === "sim") {
     document.getElementById("change-need-error");
 
   const orderTotal =
-    Cart.getTotal() + 3;
+    Cart.getTotal() + 5;
 
   // valor digitado no input
   const changeValue =
@@ -412,9 +412,9 @@ function collectFormData() {
     needChange: needChange === "sim",
     changeFor,
     items: Cart.items,
-    deliveryFee: 3,
+    deliveryFee: 5,
 subtotal: Cart.getTotal(),
-total: Cart.getTotal() + 3,
+total: Cart.getTotal() + 5,
   };
 }
 

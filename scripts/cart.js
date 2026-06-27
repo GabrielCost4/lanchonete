@@ -253,7 +253,7 @@ updateBread(id, bread) {
     // Totais
     const subtotal = document.getElementById("cart-subtotal");
     const total = document.getElementById("cart-total");
-    const DELIVERY_FEE = 3;
+    const DELIVERY_FEE = 5;
 
 const subtotalValue = this.getTotal();
 const totalValue = subtotalValue + DELIVERY_FEE;
