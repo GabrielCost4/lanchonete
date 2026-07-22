@@ -72,6 +72,15 @@
   "image": "misto-quente.png"
 },
 {
+  "id": 9,
+  "name": "Cachorro quente simples",
+  "category": "burgers",
+  "price": 14.00,
+  "description": "Pão, 2 salsichas, maionese, ketchup, mostarda, tomate, cebola, alface e batata palha.",
+  "ingredients": ["Pão", "2 salsichas", "Maionese", "Ketchup", "Mostarda", "Tomate", "Cebola", "Alface", "Batata Palha"],
+  "image": "cachorro-quente-simples.png"
+},
+{
   "id": 11,
   "name": "Conquista Guaraná 2L",
   "category": "drinks",
