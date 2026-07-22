@@ -5,12 +5,25 @@
 
 const Cart = {
   items: [],
+  deliveryMode: "",
 
   /**
    * Inicializa carrinho a partir do localStorage.
    */
   init() {
-    this.items = Storage.getCart();
+    this.items = Storage.getCart().map((item) => ({
+      ...item,
+      addons: Array.isArray(item.addons)
+        ? item.addons.map((addon) =>
+            typeof addon === "string"
+              ? { name: addon, quantity: 1 }
+              : { name: addon.name, quantity: Number(addon.quantity || 1) }
+          )
+        : [],
+      observation: item.observation || "",
+      bread: item.bread || "",
+      category: item.category,
+    }));
     this.render();
     this.updateBadge();
   },
@@ -29,6 +42,7 @@ const Cart = {
   observation: "",
   bread: "",
   category: product.category,
+  addons: [],
 });
     }
     this.save();
@@ -86,10 +100,99 @@ updateBread(id, bread) {
 },
 
   /**
+   * Retorna o valor dos acréscimos de um item.
+   */
+  getItemAddonsPrice(item) {
+    if (item.category !== "burgers") return 0;
+
+    const addons = Array.isArray(item.addons) ? item.addons : [];
+    if (!addons.length) return 0;
+
+    const addonPrices = {
+      Bacon: 4,
+      Carne: 4,
+      Salsicha: 3,
+      Presunto: 3,
+      Muçarela: 3,
+      Calabresa: 4,
+      "Coca-Cola Lata": 6.5,
+      Mostarda: 1.5,
+    };
+
+    return addons.reduce((sum, addon) => {
+      const name = typeof addon === "string" ? addon : addon.name;
+      const quantity = typeof addon === "string" ? 1 : Number(addon.quantity || 1);
+      return sum + (addonPrices[name] || 0) * quantity;
+    }, 0);
+  },
+
+  /**
+   * Retorna o total de um item com acréscimos.
+   */
+  getItemTotal(item) {
+    return item.price * item.quantity + this.getItemAddonsPrice(item);
+  },
+
+  /**
+   * Adiciona ou remove um acréscimo de um item.
+   */
+  updateAddonQuantity(id, addonName, delta) {
+    const item = this.items.find((i) => i.id === id);
+    if (!item || item.category !== "burgers") return;
+
+    const addons = Array.isArray(item.addons) ? item.addons : [];
+    const existing = addons.find((addon) => addon.name === addonName);
+
+    if (existing) {
+      const nextQuantity = Math.max(0, existing.quantity + delta);
+      if (nextQuantity === 0) {
+        item.addons = addons.filter((addon) => addon.name !== addonName);
+      } else {
+        existing.quantity = nextQuantity;
+        item.addons = [...addons];
+      }
+    } else if (delta > 0) {
+      item.addons = [...addons, { name: addonName, quantity: 1 }];
+    }
+
+    this.save();
+    this.render();
+  },
+
+  /**
+   * Define o modo de recebimento.
+   */
+  setDeliveryMode(mode) {
+    this.deliveryMode = mode;
+    this.render();
+  },
+
+  /**
+   * Retorna o modo de recebimento.
+   */
+  getDeliveryMode() {
+    return this.deliveryMode;
+  },
+
+  /**
+   * Retorna a taxa de entrega aplicável.
+   */
+  getDeliveryFee() {
+    return this.getDeliveryMode() === "Entregar" ? 5 : 0;
+  },
+
+  /**
    * Retorna o total do carrinho.
    */
   getTotal() {
-    return this.items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+    return this.items.reduce((sum, i) => sum + this.getItemTotal(i), 0);
+  },
+
+  /**
+   * Retorna o total final com a taxa de entrega, quando aplicável.
+   */
+  getFinalTotal() {
+    return this.getTotal() + this.getDeliveryFee();
   },
 
   /**
@@ -104,6 +207,10 @@ updateBread(id, bread) {
    */
   clear() {
     this.items = [];
+    this.deliveryMode = "";
+    document.querySelectorAll('input[name="delivery-mode"]').forEach((input) => {
+      input.checked = false;
+    });
     this.save();
     this.render();
     this.updateBadge();
@@ -168,6 +275,17 @@ updateBread(id, bread) {
     if (empty) empty.style.display = "none";
     if (footer) footer.style.display = "block";
 
+    const addonOptions = [
+      { name: "Bacon", price: 4 },
+      { name: "Carne", price: 4 },
+      { name: "Salsicha", price: 3 },
+      { name: "Presunto", price: 3 },
+      { name: "Muçarela", price: 3 },
+      { name: "Calabresa", price: 4 },
+      { name: "Coca-Cola Lata", price: 6.5 },
+      { name: "Mostarda", price: 1.5 },
+    ];
+
     body.innerHTML = this.items
       .map(
         (item) => `
@@ -188,7 +306,7 @@ updateBread(id, bread) {
                 </svg>
               </button>
             </div>
-            <div class="cart-item-price">R$ ${(item.price * item.quantity).toFixed(2).replace(".", ",")}</div>
+            <div class="cart-item-price">R$ ${this.getItemTotal(item).toFixed(2).replace(".", ",")}</div>
             ${item.category === 'burgers' ? `
             <div class="cart-item-bread-wrapper">
   <select 
@@ -230,6 +348,32 @@ updateBread(id, bread) {
   />
 </div>
             ` : ''}
+
+            ${item.category === 'burgers' ? `
+            <div class="cart-item-addons">
+              <div class="cart-item-addons-title">Acréscimos:</div>
+              <div class="cart-item-addons-list">
+                ${addonOptions.map((addon) => {
+                  const current = Array.isArray(item.addons)
+                    ? item.addons.find((entry) => entry.name === addon.name)
+                    : null;
+                  const quantity = current ? current.quantity : 0;
+
+                  return `
+                    <div class="cart-item-addon">
+                      <span>${addon.name}</span>
+                      <span class="cart-item-addon-price">+R$ ${addon.price.toFixed(2).replace(".", ",")}</span>
+                      <div class="cart-item-addon-controls">
+                        <button type="button" class="addon-btn" data-id="${item.id}" data-addon="${addon.name}" data-delta="-1">-</button>
+                        <span class="addon-quantity">${quantity}</span>
+                        <button type="button" class="addon-btn" data-id="${item.id}" data-addon="${addon.name}" data-delta="1">+</button>
+                      </div>
+                    </div>
+                  `;
+                }).join("")}
+              </div>
+            </div>
+            ` : ''}
             <div class="cart-item-qty">
               <button class="qty-btn qty-minus" data-id="${item.id}" aria-label="Diminuir">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -252,20 +396,24 @@ updateBread(id, bread) {
 
     // Totais
     const subtotal = document.getElementById("cart-subtotal");
-    const total = document.getElementById("cart-total");
+    const deliveryInfo = document.getElementById("cart-delivery-info");
     const DELIVERY_FEE = 5;
 
-const subtotalValue = this.getTotal();
-const totalValue = subtotalValue + DELIVERY_FEE;
+    const subtotalValue = this.getTotal();
+    const deliverySelected = this.getDeliveryMode() === "Entregar";
+    const totalValue = subtotalValue + (deliverySelected ? DELIVERY_FEE : 0);
 
-const subtotalFormatted =
-  `R$ ${subtotalValue.toFixed(2).replace(".", ",")}`;
+    const subtotalFormatted =
+      `R$ ${subtotalValue.toFixed(2).replace(".", ",")}`;
 
-const totalFormatted =
-  `R$ ${totalValue.toFixed(2).replace(".", ",")}`;
+    if (subtotal) subtotal.textContent = subtotalFormatted;
 
-if (subtotal) subtotal.textContent = subtotalFormatted;
-if (total) total.textContent = totalFormatted;
+    if (deliveryInfo) {
+      deliveryInfo.style.display = deliverySelected ? "block" : "none";
+      deliveryInfo.innerHTML = deliverySelected
+        ? `<div class="cart-delivery-line">Subtotal: <strong>${subtotalFormatted}</strong></div><div class="cart-delivery-line">Taxa de entrega: <strong>R$ 5,00</strong></div><div class="cart-delivery-line">Valor total: <strong>R$ ${totalValue.toFixed(2).replace(".", ",")}</strong></div>`
+        : "";
+    }
 
     // Eventos dos itens
     body.querySelectorAll(".cart-item-remove").forEach((btn) => {
@@ -302,6 +450,17 @@ if (total) total.textContent = totalFormatted;
     );
   });
 });
+
+    body.querySelectorAll(".cart-item-addon .addon-btn").forEach((button) => {
+      button.addEventListener("click", () => {
+        this.updateAddonQuantity(
+          parseInt(button.dataset.id),
+          button.dataset.addon,
+          parseInt(button.dataset.delta, 10)
+        );
+      });
+    });
+
   },
 };
 
@@ -339,6 +498,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Abrir carrinho pelo ícone
   document.getElementById("cart-toggle")?.addEventListener("click", () => Cart.openCart());
+
+  document.querySelectorAll('input[name="delivery-mode"]').forEach((input) => {
+    input.addEventListener("change", () => Cart.setDeliveryMode(input.value));
+  });
 
   // Finalizar pedido
   document.getElementById("btn-checkout")?.addEventListener("click", () => {

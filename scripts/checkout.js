@@ -34,6 +34,10 @@ function handleCheckoutKey(e) {
 /**
  * Renderiza resumo do pedido no checkout.
  */
+function getDeliveryFee() {
+  return Cart.getDeliveryFee();
+}
+
 function renderCheckoutOrder() {
   const list = document.getElementById("checkout-order-list");
   const total = document.getElementById("checkout-total-value");
@@ -47,26 +51,30 @@ function renderCheckoutOrder() {
       <div class="checkout-item">
         <span class="checkout-item-qty">${item.quantity}x</span>
         <div class="checkout-item-info">
-  <span class="checkout-item-name">${item.name}</span>
+          <span class="checkout-item-name">${item.name}</span>
 
-  ${item.category === 'burgers' ? `<span class="checkout-item-bread">
-    Pão: ${item.bread}
-  </span>` : ''}
+          ${item.category === 'burgers' ? `<span class="checkout-item-bread">
+            Pão: ${item.bread || "Não informado"}
+          </span>` : ''}
 
-  ${item.observation && item.category === 'burgers'
-    ? `<span class="checkout-item-obs">${item.observation}</span>`
-    : ""}
-</div>
-        <span class="checkout-item-price">R$ ${(item.price * item.quantity).toFixed(2).replace(".", ",")}</span>
+          ${item.observation && item.category === 'burgers'
+            ? `<span class="checkout-item-obs">Obs: ${item.observation}</span>`
+            : ""}
+
+          ${item.category === 'burgers' && Array.isArray(item.addons) && item.addons.length
+            ? `<span class="checkout-item-obs">Acréscimos: ${formatAddons(item.addons)}</span>`
+            : ""}
+        </div>
+        <span class="checkout-item-price">R$ ${Cart.getItemTotal(item).toFixed(2).replace(".", ",")}</span>
       </div>
     `
     )
     .join("");
 
-  const DELIVERY_FEE = 5;
+  const DELIVERY_FEE = getDeliveryFee();
 
 const subtotal = Cart.getTotal();
-const finalTotal = subtotal + DELIVERY_FEE;
+const finalTotal = Cart.getFinalTotal();
 
 if (total) {
   total.textContent =
@@ -77,6 +85,16 @@ if (total) {
 /**
  * Máscara de telefone.
  */
+function formatAddons(addons) {
+  return addons
+    .map((addon) => {
+      const name = typeof addon === "string" ? addon : addon.name;
+      const quantity = typeof addon === "string" ? 1 : Number(addon.quantity || 1);
+      return quantity > 1 ? `${quantity}x ${name}` : name;
+    })
+    .join(", ");
+}
+
 function phoneMask(value) {
   return value
     .replace(/\D/g, "")
@@ -272,6 +290,11 @@ function validateCheckoutForm() {
   const payErr =
     document.getElementById("payment-error");
 
+  if (!Cart.getDeliveryMode()) {
+    window.showCustomAlert?.("Selecione Entregar ou Vou buscar.", "warning");
+    valid = false;
+  }
+
   if (!payment) {
 
     if (payErr) {
@@ -325,7 +348,7 @@ if (needChange.value === "sim") {
     document.getElementById("change-need-error");
 
   const orderTotal =
-    Cart.getTotal() + 5;
+    Cart.getTotal() + getDeliveryFee();
 
   // valor digitado no input
   const changeValue =
@@ -399,6 +422,8 @@ function collectFormData() {
   const payment = document.querySelector('input[name="payment"]:checked')?.value || "";
   const needChange = document.querySelector('input[name="need-change"]:checked')?.value;
   const changeFor = document.getElementById("checkout-change")?.value || "";
+  const deliveryMode = Cart.getDeliveryMode();
+  const deliveryFee = Cart.getDeliveryFee();
 
   return {
     name: document.getElementById("checkout-name")?.value.trim() || "",
@@ -411,10 +436,11 @@ function collectFormData() {
     payment,
     needChange: needChange === "sim",
     changeFor,
+    deliveryMode,
     items: Cart.items,
-    deliveryFee: 5,
+    deliveryFee,
 subtotal: Cart.getTotal(),
-total: Cart.getTotal() + 5,
+total: Cart.getFinalTotal(),
   };
 }
 

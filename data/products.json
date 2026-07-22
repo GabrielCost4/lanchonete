@@ -22,8 +22,8 @@
   "name": "X-Salada",
   "category": "burgers",
   "price": 20.00,
-  "description": "Pão, carne de hamburguer acompanhado de 2 fatias de muçarela, 2 duas fatias de presunto, alface, tomate.",
-  "ingredients": ["Pão","Carne de Hamburguer", "2 fatias de muçarela", "2 fatias de presunto", "Alface", "Tomate"],
+  "description": "Pão, carne de hamburguer acompanhado de 2 fatias de muçarela, 2 duas fatias de presunto, alface, tomate, cebola, ketchup e maionese.",
+  "ingredients": ["Pão","Carne de Hamburguer", "2 fatias de muçarela", "2 fatias de presunto", "Alface", "Tomate", "Cebola", "Ketchup", "Maionese"],
   "image": "x-salada.jpg"
 },
 {
@@ -31,8 +31,8 @@
   "name": "Hambúrguer",
   "category": "burgers",
   "price": 14.00,
-  "description": "Pão, carne de hambúrguer acompanhada de alface, tomate, maionese e ketchup.",
-  "ingredients": ["Pão","Carne de Hambúrguer", "Alface", "Tomate", "Maionese", "Ketchup"],
+  "description": "Pão, carne de hambúrguer acompanhada de alface, tomate, cebola, maionese e ketchup.",
+  "ingredients": ["Pão","Carne de Hambúrguer", "Alface", "Tomate", "Cebola", "Maionese", "Ketchup"],
   "image": "hamburguer.png"
 },
 {
@@ -40,8 +40,8 @@
   "name": "Hambúrguer duplo",
   "category": "burgers",
   "price": 17.00,
-  "description": "Pão, 2 carne de hambúrguer acompanhada de alface, tomate, maionese e ketchup.",
-  "ingredients": ["Pão","Carne de Hambúrguer", "Alface", "Tomate", "Maionese", "Ketchup"],
+  "description": "Pão, 2 carne de hambúrguer acompanhada de alface, tomate, cebola, maionese e ketchup.",
+  "ingredients": ["Pão","Carne de Hambúrguer", "Alface", "Tomate", "Cebola", "Maionese", "Ketchup"],
   "image": "hamburguer.png"
 },
 {
@@ -49,8 +49,8 @@
   "name": "X-Burguer",
   "category": "burgers",
   "price": 17.00,
-  "description":"Pão, carne de hamburguer acompanhado de 2 fatias de muçarela, 2 fatias de presunto,  maionese, ketchup.",
-  "ingredients": ["Pão","Carne de Hamburguer", "2 fatias de muçarela", "2 fatias de presunto", "Maionese","Ketchup"],
+  "description":"Pão, carne de hamburguer acompanhado de 1 fatia de muçarela, 1 fatia de presunto, tomate, maionese, ketchup.",
+  "ingredients": ["Pão","Carne de Hamburguer", "1 fatia de muçarela", "1 fatia de presunto", "Tomate", "Maionese","Ketchup"],
   "image": "x-burguer.png"
 },
 {
@@ -67,8 +67,8 @@
   "name": "Misto quente",
   "category": "burgers",
   "price": 15.00,
-  "description":"Pão, 2 fatias de muçarela, 2 fatias de presunto.",
-  "ingredients": ["Pão","2 fatias de muçarela", "2 fatias de presunto"],
+  "description":"Pão, 2 fatias de muçarela, 2 fatias de presunto e tomate.",
+  "ingredients": ["Pão","2 fatias de muçarela", "2 fatias de presunto", "Tomate"],
   "image": "misto-quente.png"
 },
 {

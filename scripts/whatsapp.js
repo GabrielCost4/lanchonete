@@ -30,22 +30,36 @@ function sendToWhatsApp(data) {
   if (data.reference) lines.push(`Referência: ${data.reference}`);
 
   lines.push("");
+  lines.push(`*Recebimento:* ${data.deliveryMode || "Não informado"}`);
+  lines.push("");
   lines.push("*Itens do Pedido:*");
   lines.push("─────────────────────────────");
 
   data.items.forEach((item) => {
     lines.push(
-  `*${item.quantity} ${item.name}* — R$ ${(item.price * item.quantity)
+  `*${item.quantity} ${item.name}* — R$ ${(Cart.getItemTotal(item))
     .toFixed(2)
     .replace(".", ",")}`
 );
 
-    // Mostrar tipo de pão e observação somente para hambúrgueres
+    // Mostrar tipo de pão e observação somente para hambúrgueres; acréscimos somente para hambúrgueres
     if (item.category === "burgers") {
       lines.push(`   ↳ _Pão: ${item.bread || ""}_`);
 
       if (item.observation && item.observation.trim()) {
         lines.push(`   ↳ _Obs: ${item.observation.trim()}_`);
+      }
+
+      if (Array.isArray(item.addons) && item.addons.length) {
+        const addons = item.addons
+          .map((addon) => {
+            const name = typeof addon === "string" ? addon : addon.name;
+            const quantity = typeof addon === "string" ? 1 : Number(addon.quantity || 1);
+            const label = name.toLowerCase();
+            return `${quantity} ${label}${quantity > 1 ? "s" : ""} a mais`;
+          })
+          .join(", ");
+        lines.push(`   ↳ _Acréscimos: ${addons}_`);
       }
     }
 

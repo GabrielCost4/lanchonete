@@ -9,8 +9,8 @@ const storeSettings = {
   manualOpen: true,
 
   // Horário de abertura e fechamento (formato 24h "HH:MM")
-  openingTime: "18:00",
-  closingTime: "22:00",
+  openingTime: "00:00",
+  closingTime: "23:59",
 
   // Dias da semana que o estabelecimento funciona
   // 0 = Domingo, 1 = Segunda, 2 = Terça, 3 = Quarta,
