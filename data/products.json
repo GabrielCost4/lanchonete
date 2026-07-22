@@ -81,6 +81,15 @@
   "image": "cachorro-quente-simples.png"
 },
 {
+  "id": 10,
+  "name": "Coca Cola Lata 350ML",
+  "category": "drinks",
+  "price": 6.50,
+  "description": "Refrigerante Coca-Cola Lata 350ML para acompanhar seu lanche.",
+  "ingredients": ["Coca-Cola Lata 350ML"],
+  "image": "coca-lata-.jpg"
+},
+{
   "id": 11,
   "name": "Conquista Guaraná 2L",
   "category": "drinks",

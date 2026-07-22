@@ -476,7 +476,7 @@ function getProductImageUrl(id) {
     8: "assets/misto-quente.png",
     // Cachorros-quentes
     9: "assets/cachorro-quente-simples.png",
-    10: "assets/cachorro-quente-especial.png",
+    10: "assets/coca-lata.jpg",
     // Bebidas renumeradas
     11: "https://tauste.com.br/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/8/4/84351777340059.jpg",
     12: "https://andinacocacola.vtexassets.com/arquivos/ids/158758/Coca-Cola-Original-_110440.jpg?v=639156020671730000",
