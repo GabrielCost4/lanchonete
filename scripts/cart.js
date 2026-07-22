@@ -115,7 +115,6 @@ updateBread(id, bread) {
       Presunto: 3,
       Muçarela: 3,
       Calabresa: 4,
-      "Coca-Cola Lata": 6.5,
       Mostarda: 1.5,
     };
 
@@ -282,7 +281,6 @@ updateBread(id, bread) {
       { name: "Presunto", price: 3 },
       { name: "Muçarela", price: 3 },
       { name: "Calabresa", price: 4 },
-      { name: "Coca-Cola Lata", price: 6.5 },
       { name: "Mostarda", price: 1.5 },
     ];
 
